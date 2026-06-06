@@ -1,7 +1,13 @@
 #include "monty.h"
 
-global_t var = {NULL, NULL, NULL};
+global_t var = {NULL, NULL, NULL, 0};
 
+/**
+ * main - entry point for the Monty bytecode interpreter
+ * @argc: argument count
+ * @argv: array of argument strings
+ * Return: 0 on success, exit codes on failure
+ */
 int main(int argc, char *argv[])
 {
 stack_t *stack = NULL;
@@ -51,6 +57,18 @@ else if (strcmp(opcode, "mul") == 0)
 f_mul(&stack, line_num);
 else if (strcmp(opcode, "mod") == 0)
 f_mod(&stack, line_num);
+else if (strcmp(opcode, "pchar") == 0)
+f_pchar(&stack, line_num);
+else if (strcmp(opcode, "pstr") == 0)
+f_pstr(&stack, line_num);
+else if (strcmp(opcode, "rotl") == 0)
+f_rotl(&stack, line_num);
+else if (strcmp(opcode, "rotr") == 0)
+f_rotr(&stack, line_num);
+else if (strcmp(opcode, "stack") == 0)
+f_stack(&stack, line_num);
+else if (strcmp(opcode, "queue") == 0)
+f_queue(&stack, line_num);
 else
 {
 fprintf(stderr, "L%u: unknown instruction %s\n", line_num, opcode);
